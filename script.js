@@ -1,21 +1,29 @@
+/**
+ * Cambiemos estas de let a const, ya que no cambiarán. Como son variables globales, 
+ * asegurémonos de que no se puedan cambiar dentro de diferentes funciones, lo que 
+ * provocaría un comportamiento no deseado.
+ */ 
+const sujetos = ['The dog', 'My grandma', 'The mailman', 'My bird'];
+const acciones = ['ate', 'peed', 'crushed', 'broke'];
+const objetos = ['my homework', 'my phone', 'the car'];
+const momentos = ['before the class', 'when I was sleeping', 'while I was exercising', 'during my lunch', 'while I was praying'];
 
-let who = ['The dog', 'My grandma', 'The mailman', 'My bird'];
-let action = ['ate', 'peed', 'crushed', 'broke'];
-let what = ['my homework', 'my phone', 'the car'];
-let when = ['before the class', 'when I was sleeping', 'while I was exercising', 'during my lunch', 'while I was praying'];
-
-
-function generateExcuse() {
+/**
+ * Genera una excusa aleatoria seleccionando un elemento aleatorio de cada arreglo.
+ * @returns {string} - Una excusa generada aleatoriamente.
+ */
+function generarExcusa() {
+    let sujetoAleatorio = sujetos[Math.floor(Math.random() * sujetos.length)];
+    let accionAleatoria = acciones[Math.floor(Math.random() * acciones.length)];
+    let objetoAleatorio = objetos[Math.floor(Math.random() * objetos.length)];
+    let momentoAleatorio = momentos[Math.floor(Math.random() * momentos.length)];
     
-    let randomWho = who[Math.floor(Math.random() * who.length)];
-    let randomAction = action[Math.floor(Math.random() * action.length)];
-    let randomWhat = what[Math.floor(Math.random() * what.length)];
-    let randomWhen = when[Math.floor(Math.random() * when.length)];
-    
-    
-    return `${randomWho} ${randomAction} ${randomWhat} ${randomWhen}`;
+    return `${sujetoAleatorio} ${accionAleatoria} ${objetoAleatorio} ${momentoAleatorio}`;
 }
 
-window.onload = () => {
-    document.getElementById('excuse').innerHTML = generateExcuse();
-};
+window.addEventListener('load', () => {
+    const elementoExcusa = document.getElementById('excusa');
+    if (elementoExcusa) {
+        elementoExcusa.textContent = generarExcusa();
+    }
+});
